@@ -6,7 +6,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.time.LocalDateTime;
 
 @Getter
@@ -30,6 +31,8 @@ public class Post {
 
     private LocalDateTime createdDate;
 
+     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
     // 서비스 계층에서 사용할 생성자
     public Post(String title, String content, String author) {
         this.title = title;
@@ -41,4 +44,10 @@ public class Post {
     public void prePersist() {
         this.createdDate = LocalDateTime.now(); //업데이트 될때마다 현재시간 작성
     }
+   
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
 }
