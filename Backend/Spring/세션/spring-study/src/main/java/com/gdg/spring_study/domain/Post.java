@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Post {
 
-    @Id
+    @Id // 식별자
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -30,6 +30,8 @@ public class Post {
     private String author;
 
     private LocalDateTime createdDate;
+
+    private Integer likeCount;
 
      @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
@@ -50,4 +52,7 @@ public class Post {
         this.content = content;
     }
 
+    public Post addLike(){
+        this.likeCount += 1;
+    }
 }

@@ -8,7 +8,8 @@ public record PostResponseDto(
         String title,
         String content,
         String author,
-        LocalDateTime createdDate
+        LocalDateTime createdDate,
+        Integer likeCount
 ) {
         public PostResponseDto(Post post) { 
            this(
@@ -16,7 +17,8 @@ public record PostResponseDto(
                 post.getTitle(),
                 post.getContent(),
                 post.getAuthor(),
-                post.getCreatedDate()
+                post.getCreatedDate(),
+                post.getLikeCount()
         );
     }
 

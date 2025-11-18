@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class PostService {
 
         private final PostRepository postRepository;
-
+        //하나의 단위로 묶어서 처리를 한다
         @Transactional
         public PostResponseDto createPost(PostRequestDto requestDto) {
 
@@ -28,17 +28,18 @@ public class PostService {
                                 requestDto.content(),
                                 requestDto.author());
 
-                Post savedPost = postRepository.save(post);
+                Post savedPost = postRepository.save(post); //DB에 저장 - 서비스에서 레포지토리를 호출 , 3가지 부분을 하나로 묶겠다
 
                 return new PostResponseDto(
                                 savedPost.getId(),
                                 savedPost.getTitle(),
                                 savedPost.getContent(),
                                 savedPost.getAuthor(),
-                                savedPost.getCreatedDate());
+                                savedPost.getCreatedDate(),
+                        savedPost.getLikeCount());
         }
 
-        @Transactional(readOnly = true)
+        @Transactional(readOnly = true) // 수정 안되고 읽기만 한다
         public PostResponseDto getPostById(Long id) {
                 Post post = postRepository.findById(id)
                                 .orElseThrow(() -> new IllegalArgumentException("ID에 해당하는 게시글을 찾을 수 없습니다: " + id));
@@ -49,7 +50,10 @@ public class PostService {
                                 post.getTitle(),
                                 post.getContent(),
                                 post.getAuthor(),
-                                post.getCreatedDate());
+                                post.getCreatedDate(),
+                                post.getLikeCount());
+
+
         }
 
         @Transactional(readOnly = true)
@@ -76,5 +80,15 @@ public class PostService {
                 Post post = postRepository.findById(id)
                                 .orElseThrow(() -> new IllegalArgumentException("ID에 해당하는 게시글을 찾을 수 없습니다: " + id));
                 postRepository.delete(post);
+        }
+
+        @Transactional
+        public PostResponseDto likePost(Long id) {
+                Post post = postRepository.findById(id)
+                                .orElseThrow(() -> new IllegalArgumentException("ID에 해당하는 게시글을 찾을 수 없습니다: " + id));
+
+                Post savedPost = post.addLike();
+                Post savedPost1 = postRepository.save(savedPost);
+                return new PostResponseDto(savedPost1);
         }
 }
