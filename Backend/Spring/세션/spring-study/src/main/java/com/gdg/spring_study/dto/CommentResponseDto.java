@@ -1,3 +1,7 @@
+package com.gdg.spring_study.dto;
+
+import com.gdg.spring_study.domain.Comment;
+
 // package com.gdg.spring_study.dto.CommentResponseDto.java
 public record CommentResponseDto(Long id, String content, String author) {
     public CommentResponseDto(Comment comment) {

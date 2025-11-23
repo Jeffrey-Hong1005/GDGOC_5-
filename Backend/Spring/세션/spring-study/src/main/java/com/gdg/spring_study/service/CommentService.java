@@ -1,3 +1,18 @@
+package com.gdg.spring_study.service;
+
+import com.gdg.spring_study.domain.Comment;
+import com.gdg.spring_study.domain.Post;
+import com.gdg.spring_study.dto.CommentRequestDto;
+import com.gdg.spring_study.dto.CommentResponseDto;
+import com.gdg.spring_study.repository.CommentRepository;
+import com.gdg.spring_study.repository.PostRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 // package com.gdg.spring_study.service.CommentService.java
 @Service
 @RequiredArgsConstructor

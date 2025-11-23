@@ -54,5 +54,6 @@ public class Post {
 
     public Post addLike(){
         this.likeCount += 1;
+        return null;
     }
 }

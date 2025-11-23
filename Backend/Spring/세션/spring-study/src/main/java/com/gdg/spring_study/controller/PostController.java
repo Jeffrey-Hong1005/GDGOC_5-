@@ -4,6 +4,7 @@ package com.gdg.spring_study.controller;
 import com.gdg.spring_study.dto.PostRequestDto;
 import com.gdg.spring_study.dto.PostResponseDto;
 import com.gdg.spring_study.service.PostService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import com.gdg.spring_study.dto.PostUpdateRequestDto;
 
@@ -21,7 +22,7 @@ public class PostController {
 
     //이 부분이 컨트롤러에서 서비스넘어가는 과정
     @PostMapping("/posts")
-    public PostResponseDto createPost(@RequestBody PostRequestDto requestDto) {
+    public PostResponseDto createPost(@RequestBody @Valid PostRequestDto requestDto) {
         return postService.createPost(requestDto);
     }
 

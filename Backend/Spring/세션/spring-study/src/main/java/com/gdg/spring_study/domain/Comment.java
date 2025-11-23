@@ -1,4 +1,10 @@
-// package com.gdg.spring_study.domain.Comment.java
+package com.gdg.spring_study.domain;// package com.gdg.spring_study.domain.Comment.java
+
+import com.gdg.spring_study.domain.Post;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
@@ -24,4 +30,9 @@ public class Comment {
 		this.author = author;
 		this.post = post;
 	}
+
+    public void update(String content, String author) {
+        this.content = content;
+        this.author = author;
+    }
 }

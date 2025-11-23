@@ -1,3 +1,13 @@
+package com.gdg.spring_study.controller;
+
+import com.gdg.spring_study.dto.CommentRequestDto;
+import com.gdg.spring_study.dto.CommentResponseDto;
+import com.gdg.spring_study.service.CommentService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 // package com.gdg.spring_study.controller.CommentController.java
 @RestController
 @RequiredArgsConstructor
